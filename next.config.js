@@ -6,6 +6,14 @@ const nextConfig = {
       bodySizeLimit: '4mb',
     },
   },
+  async rewrites() {
+    return [
+      {
+        source: '/LaptopWiseScanner.bat',
+        destination: '/api/scanner/download',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

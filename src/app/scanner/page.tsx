@@ -59,7 +59,7 @@ export default function ScannerPage() {
           </div>
 
           <a
-            href="/LaptopWiseScanner.bat"
+            href="/api/scanner/download"
             download="LaptopWiseScanner.bat"
             className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2.5 shadow-xl shadow-emerald-500/25 transform hover:-translate-y-0.5 transition-all self-start md:self-auto shrink-0"
           >

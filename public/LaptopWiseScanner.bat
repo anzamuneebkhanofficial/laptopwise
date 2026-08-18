@@ -458,8 +458,24 @@ Write-Host ("     RAM      : " + $totalRamGB + " GB (" + $installedSlots + " of 
 Write-Host "================================================================" -ForegroundColor Green
 Write-Host ""
 
-$endpoint = Read-Host "API Endpoint URL [Default: http://localhost:3000/api/scan/upload]"
-if ([string]::IsNullOrWhiteSpace($endpoint)) { $endpoint = "http://localhost:3000/api/scan/upload" }
+# Server Base URL (configured dynamically at download time or via environment variable)
+$serverBaseUrl = "__SERVER_APP_URL__"
+if ($serverBaseUrl -eq "__SERVER_APP_URL__" -or [string]::IsNullOrWhiteSpace($serverBaseUrl)) {
+    if ($env:NEXT_PUBLIC_APP_URL) {
+        $serverBaseUrl = $env:NEXT_PUBLIC_APP_URL.Trim().TrimEnd('/')
+    } elseif ($env:LAPTOPWISE_SERVER_URL) {
+        $serverBaseUrl = $env:LAPTOPWISE_SERVER_URL.Trim().TrimEnd('/')
+    } else {
+        $serverBaseUrl = "http://localhost:3000"
+    }
+} else {
+    $serverBaseUrl = $serverBaseUrl.Trim().TrimEnd('/')
+}
+
+$defaultEndpoint = "$serverBaseUrl/api/scan/upload"
+
+$endpoint = Read-Host "API Endpoint URL [Default: $defaultEndpoint]"
+if ([string]::IsNullOrWhiteSpace($endpoint)) { $endpoint = $defaultEndpoint }
 
 $askingPrice = Read-Host "Asking Price in PKR (press Enter to skip)"
 $priceVal = $null
@@ -478,12 +494,20 @@ try {
     Write-Host " [SUCCESS] TRUTH REPORT GENERATED!" -ForegroundColor Green
     Write-Host "================================================================" -ForegroundColor Green
     Write-Host ("  Scan ID    : " + $response.scanId) -ForegroundColor Yellow
-    Write-Host ("  Report URL : http://localhost:3000/report/" + $response.scanId) -ForegroundColor Cyan
-    Start-Process ("http://localhost:3000/report/" + $response.scanId)
+
+    # Extract base URL dynamically from $endpoint
+    $baseUrl = $endpoint -replace '/api/scan/upload/?$', ''
+    if ([string]::IsNullOrWhiteSpace($baseUrl) -or $baseUrl -eq $endpoint) {
+        $baseUrl = $serverBaseUrl
+    }
+    $reportUrl = "$baseUrl/report/" + $response.scanId
+    Write-Host ("  Report URL : " + $reportUrl) -ForegroundColor Cyan
+    Start-Process $reportUrl
 } catch {
     Write-Host ""
     Write-Host (" [ERROR] Upload failed: " + $_) -ForegroundColor Red
-    Write-Host "Make sure: 1) npm run dev is running   2) You ran this as Administrator" -ForegroundColor DarkYellow
+    Write-Host (" Make sure: 1) The server ($endpoint) is running and reachable") -ForegroundColor DarkYellow
+    Write-Host ("            2) You ran this as Administrator") -ForegroundColor DarkYellow
 }
 
 Write-Host ""
