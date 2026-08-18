@@ -6,7 +6,7 @@ import { Footer } from "@/components/Footer";
 export const metadata: Metadata = {
   title: "LaptopWise — Smart Laptop Checker, Hardware Inspector & Clean Buying Companion",
   description: "Verify used & new laptop authenticity, hardware specs, SMART battery health, budget matching, and AI comparison before buying.",
-  authors: [{ name: "Muhammad Hamza Muneeb Khan", url: "https://github.com/anzamuneebkhanofficial" }],
+  authors: [{ name: "Muhammad Anza Muneeb Khan", url: "https://github.com/anzamuneebkhanofficial" }],
 };
 
 export default function RootLayout({

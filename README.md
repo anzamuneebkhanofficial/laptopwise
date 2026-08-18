@@ -10,7 +10,7 @@
 [![Google Gemini](https://img.shields.io/badge/Google_Gemini-2.5_Flash-orange?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com/)
 [![Groq AI](https://img.shields.io/badge/Groq_Cloud-Llama_3.3-f55036?style=for-the-badge&logo=groq&logoColor=white)](https://groq.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-emerald.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Author](https://img.shields.io/badge/Author-Muhammad_Hamza_Muneeb_Khan-6366f1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anzamuneebkhanofficial)
+[![Author](https://img.shields.io/badge/Author-Muhammad_Anza_Muneeb_Khan-6366f1?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anzamuneebkhanofficial)
 
 <p align="center">
   <strong>Protecting buyers and clients worldwide from counterfeit storage, worn-out batteries, mismatched chargers, and deceptive market pricing.</strong>
@@ -278,7 +278,7 @@ LaptopWise is optimized for **1-click zero-config deployment on Vercel**:
 
 <div align="center">
 
-### **Muhammad Hamza Muneeb Khan**
+### **Muhammad Anza Muneeb Khan**
 *Full-Stack Engineer & AI Solutions Developer*
 
 [![GitHub](https://img.shields.io/badge/GitHub-anzamuneebkhanofficial-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/anzamuneebkhanofficial)

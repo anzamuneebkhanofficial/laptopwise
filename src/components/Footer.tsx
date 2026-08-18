@@ -70,7 +70,7 @@ export const Footer: React.FC = () => {
             rel="noreferrer"
             className="text-indigo-400 hover:text-indigo-300 font-semibold underline decoration-indigo-500/40 hover:decoration-indigo-400 transition-colors"
           >
-            Muhammad Hamza Muneeb Khan
+            Muhammad Anza Muneeb Khan
           </a>
         </div>
       </div>
