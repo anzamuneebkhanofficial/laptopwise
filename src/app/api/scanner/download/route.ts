@@ -4,8 +4,17 @@ import path from "path";
 
 export const dynamic = "force-dynamic";
 
-function getBaseUrl(req: NextRequest): string {
-  // 1. Explicit environment variable configured by user
+export function getBaseUrl(req: NextRequest): string {
+  // 1. Explicit query parameter passed from frontend (e.g. ?origin=https://my-server.com)
+  const queryOrigin = req.nextUrl?.searchParams?.get("origin");
+  if (queryOrigin && queryOrigin.trim() !== "" && queryOrigin !== "null" && queryOrigin !== "undefined") {
+    const clean = queryOrigin.trim().replace(/\/+$/, "");
+    if (clean.startsWith("http://") || clean.startsWith("https://")) {
+      return clean;
+    }
+  }
+
+  // 2. Explicit environment variable configured by user
   const envAppUrl =
     process.env.NEXT_PUBLIC_APP_URL ||
     process.env.APP_URL ||
@@ -17,10 +26,13 @@ function getBaseUrl(req: NextRequest): string {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
       url = `https://${url}`;
     }
-    return url;
+    // If user explicitly configured a domain that is NOT localhost, always prioritize it!
+    if (!url.includes("localhost") && !url.includes("127.0.0.1")) {
+      return url;
+    }
   }
 
-  // 2. Vercel deployment variables
+  // 3. Vercel deployment variables
   if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
     return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL.trim().replace(/\/+$/, "")}`;
   }
@@ -28,15 +40,36 @@ function getBaseUrl(req: NextRequest): string {
     return `https://${process.env.VERCEL_URL.trim().replace(/\/+$/, "")}`;
   }
 
-  // 3. Dynamic request headers (e.g. behind reverse proxy, ngrok, cloudflare, VPS domain)
-  const forwardedProto = req.headers.get("x-forwarded-proto") || "http";
-  const forwardedHost = req.headers.get("x-forwarded-host") || req.headers.get("host");
-
-  if (forwardedHost) {
-    return `${forwardedProto}://${forwardedHost}`.replace(/\/+$/, "");
+  // 4. Referer header (The web page from which user triggered the download)
+  const referer = req.headers.get("referer");
+  if (referer) {
+    try {
+      const refUrl = new URL(referer);
+      if (refUrl.origin && refUrl.origin !== "null" && !refUrl.origin.includes("localhost") && !refUrl.origin.includes("127.0.0.1")) {
+        return refUrl.origin.replace(/\/+$/, "");
+      }
+    } catch {}
   }
 
-  // 4. Request URL origin
+  // 5. Dynamic request headers (e.g. Reverse Proxy, Cloudflare, Nginx, VPS host header)
+  const forwardedProto = req.headers.get("x-forwarded-proto") || req.nextUrl?.protocol?.replace(":", "") || "https";
+  const forwardedHost = req.headers.get("x-forwarded-host") || req.headers.get("host") || req.nextUrl?.host;
+
+  if (forwardedHost && !forwardedHost.includes("localhost") && !forwardedHost.includes("127.0.0.1")) {
+    const proto = forwardedProto.includes("https") ? "https" : forwardedProto;
+    return `${proto}://${forwardedHost}`.replace(/\/+$/, "");
+  }
+
+  // 6. If envAppUrl is set (even if localhost), use it
+  if (envAppUrl && envAppUrl.trim() !== "") {
+    let url = envAppUrl.trim().replace(/\/+$/, "");
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = `http://${url}`;
+    }
+    return url;
+  }
+
+  // 7. Request nextUrl origin
   try {
     const origin = req.nextUrl?.origin;
     if (origin && origin !== "null" && origin !== "http://null") {
@@ -44,6 +77,7 @@ function getBaseUrl(req: NextRequest): string {
     }
   } catch {}
 
+  // 8. Default fallback
   return "http://localhost:3000";
 }
 
@@ -58,7 +92,7 @@ export async function GET(req: NextRequest) {
     let fileContent = fs.readFileSync(filePath, "utf-8");
     const baseUrl = getBaseUrl(req);
 
-    // Replace the placeholder base URL with the detected or configured server URL
+    // Replace placeholder with the exact active base URL
     fileContent = fileContent.replace(/__SERVER_APP_URL__/g, baseUrl);
 
     return new NextResponse(fileContent, {

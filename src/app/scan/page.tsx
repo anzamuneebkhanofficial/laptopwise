@@ -83,6 +83,11 @@ export default function ScanPage() {
 
               <a
                 href="/api/scanner/download"
+                onClick={(e) => {
+                  if (typeof window !== "undefined" && window.location.origin) {
+                    e.currentTarget.href = `/api/scanner/download?origin=${encodeURIComponent(window.location.origin)}`;
+                  }
+                }}
                 download="LaptopWiseScanner.bat"
                 className="px-6 py-3 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transform hover:-translate-y-0.5 transition-all self-start sm:self-auto"
               >

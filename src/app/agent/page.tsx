@@ -60,6 +60,11 @@ export default function AgentPage() {
         <div className="flex flex-wrap gap-3 pt-2">
           <a
             href="/api/scanner/download"
+            onClick={(e) => {
+              if (typeof window !== "undefined" && window.location.origin) {
+                e.currentTarget.href = `/api/scanner/download?origin=${encodeURIComponent(window.location.origin)}`;
+              }
+            }}
             download="LaptopWiseScanner.bat"
             className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-bold text-xs flex items-center gap-2 shadow-lg shadow-emerald-600/20 transition-all"
           >

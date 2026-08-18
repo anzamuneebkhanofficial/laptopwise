@@ -375,6 +375,11 @@ export default function GuidePage() {
             </div>
             <a
               href="/api/scanner/download"
+              onClick={(e) => {
+                if (typeof window !== "undefined" && window.location.origin) {
+                  e.currentTarget.href = `/api/scanner/download?origin=${encodeURIComponent(window.location.origin)}`;
+                }
+              }}
               download="LaptopWiseScanner.bat"
               className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all shrink-0"
             >
