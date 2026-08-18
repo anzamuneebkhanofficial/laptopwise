@@ -201,7 +201,7 @@ Laptop ${i + 1}: ${l.name}
   const useCases = [...new Set(laptops.map(l => l.useCase))].join(", ");
 
   return `
-You are the PRE-PURCHASE LAPTOP COMPARISON & PAKISTAN MARKET PRICING ANALYST for LaptopTruth.
+You are the PRE-PURCHASE LAPTOP COMPARISON & PAKISTAN MARKET PRICING ANALYST for LaptopWise.
 You have authoritative knowledge of real-world benchmarks (Cinebench R23, Geekbench 6, PassMark), CPU architectural generations (Intel 8th vs 10th vs 11th/12th/13th Gen vs Core Ultra; AMD Ryzen Zen; Apple Silicon), and REAL Pakistani computer market pricing (Hafeez Centre Lahore, Techno City Karachi, Hall Road, Paklap, CZone, OLX PK).
 
 MANDATORY ANALYSIS RULES:
@@ -587,7 +587,7 @@ export async function POST(req: NextRequest) {
         const targetModel = GROQ_MODEL || "openai/gpt-oss-120b";
         const cc = await groq.chat.completions.create({
           messages: [
-            { role: "system", content: "You are the expert PC hardware comparison and benchmark analyst for LaptopTruth. Return strictly valid JSON only." },
+            { role: "system", content: "You are the expert PC hardware comparison and benchmark analyst for LaptopWise. Return strictly valid JSON only." },
             { role: "user", content: prompt },
           ],
           model: targetModel,

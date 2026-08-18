@@ -93,11 +93,10 @@ Buying a new, used, or refurbished laptop in physical tech markets or online mar
 ```
 
 ### 1. 🔍 Automated Deep Hardware Scanner (Mode A)
-- **3 Native Formats:**
-  - `LaptopWiseScanner.bat`: Zero-install double-click launcher for Windows 10 & 11.
-  - `LaptopWiseScanner.ps1`: Open-source PowerShell script with full query transparency.
-  - `LaptopWiseScanner.exe`: Pre-compiled standalone .NET 8.0 executable.
-- **Deep Inspection:** Analyzes BIOS serials, processor threads, RAM slot population, SSD SMART wear, and battery ACPI health.
+- **1-Click Zero-Install Scanner (`LaptopWiseScanner.bat`):** 
+  - Ultra-lightweight (23 KB) double-click launcher for all Windows 10 & 11 laptops.
+  - Zero dependencies, zero installations, and zero background services.
+  - Right-click → **Run as Administrator** to query low-level motherboard SMBIOS, RAM slots, battery ACPI registers, and SSD S.M.A.R.T. wear data.
 
 ### 2. 📝 Manual Buyer Advisor & Spec Matcher (Mode B)
 - Pre-purchase research for buyers browsing OLX, Daraz, Paklap, or Amazon before visiting a store.
@@ -154,7 +153,7 @@ The system computes:
 - **Styling & UI:** Tailwind CSS v4, Framer Motion animations, Glassmorphism design tokens
 - **Iconography:** Lucide React
 - **AI Backend:** Google GenAI SDK (`@google/genai`), Groq SDK (`groq-sdk`)
-- **Native Scanner Agent:** Windows PowerShell (WMI/CIM/ACPI) & C# .NET 8.0
+- **Native Scanner Agent:** Windows PowerShell Engine (WMI / CIM / ACPI) encapsulated in a 1-Click `.bat` launcher
 
 ---
 
@@ -162,28 +161,21 @@ The system computes:
 
 ```
 laptopwise/
-├── public/                         # Static assets & downloadable scanner agents
-│   ├── LaptopTruthScanner.bat      # Native Windows Batch launcher
-│   ├── LaptopTruthScanner.ps1      # PowerShell hardware inspector
-│   ├── LaptopTruthScanner.exe      # Standalone compiled executable
-│   └── LaptopTruthScanner_Source.zip # Source code archive for developers
-├── scanner/                        # C# .NET 8.0 Scanner Source Code
-│   ├── LaptopTruthScanner.cs       # Low-level hardware inspection source
-│   ├── LaptopTruthScanner.csproj   # .NET project configuration
-│   ├── BuildExecutable.bat         # 1-click compiler script
-│   └── README.md                   # Scanner technical documentation
+├── public/                         # Static assets & downloadable scanner
+│   └── LaptopWiseScanner.bat       # 1-Click 23 KB Windows Hardware Inspector
 ├── src/
 │   ├── app/                        # Next.js App Router
 │   │   ├── api/                    # Serverless API routes
 │   │   │   ├── compare/ai/         # 4-Laptop AI comparison endpoint
 │   │   │   ├── scan/manual/        # Manual entry evaluation endpoint
 │   │   │   ├── scan/upload/        # Telemetry JSON upload endpoint
+│   │   │   ├── scanner/download/   # Scanner download endpoint
 │   │   │   └── share/              # Public share link persistence
 │   │   ├── compare/ai/             # Side-by-side comparison UI
 │   │   ├── guide/                  # 8-Step interactive buying guide
 │   │   ├── report/[id]/            # Comprehensive audit report page
 │   │   ├── scan/                   # Scan mode selector (Agent vs Manual)
-│   │   ├── scanner/                # Scanner download hub & instructions
+│   │   ├── scanner/                # Scanner download & visual 3-step guide
 │   │   ├── globals.css             # Glassmorphic CSS styling tokens
 │   │   ├── layout.tsx              # Root application layout & metadata
 │   │   └── page.tsx                # Landing homepage

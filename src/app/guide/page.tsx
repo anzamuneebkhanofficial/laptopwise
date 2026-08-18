@@ -367,52 +367,19 @@ export default function GuidePage() {
               </p>
             </div>
           </div>
-          <Link
-            href="/scanner"
-            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-indigo-300 hover:text-indigo-200 text-xs font-bold flex items-center gap-1.5 transition-all"
-          >
-            <span>View Scanner Download Hub</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 rounded-2xl bg-slate-900/90 border border-emerald-500/30 space-y-2">
-            <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Fastest Option</span>
-            <h4 className="text-sm font-bold text-white">1. Instant Scanner (.bat)</h4>
-            <p className="text-xs text-slate-400">Double-click to run on any laptop without installing anything.</p>
+          <div className="p-5 rounded-2xl bg-slate-900/90 border border-emerald-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <span className="text-[10px] font-bold text-emerald-400 uppercase tracking-wider">Recommended Tool</span>
+              <h4 className="text-sm font-bold text-white">LaptopWise 1-Click Hardware Scanner (.bat)</h4>
+              <p className="text-xs text-slate-400">Zero install (23 KB). Right-click &rarr; Run as Administrator to check battery wear, RAM slots, and fake SSDs instantly.</p>
+            </div>
             <a
-              href="/LaptopTruthScanner.bat"
-              download="LaptopTruthScanner.bat"
-              className="mt-2 w-full py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
+              href="/LaptopWiseScanner.bat"
+              download="LaptopWiseScanner.bat"
+              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-emerald-600/20 transition-all shrink-0"
             >
-              <Download className="w-3.5 h-3.5" /> Download .BAT
-            </a>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-900/90 border border-indigo-500/30 space-y-2">
-            <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-wider">Transparent Code</span>
-            <h4 className="text-sm font-bold text-white">2. PowerShell Script (.ps1)</h4>
-            <p className="text-xs text-slate-400">100% open-source script you can inspect before executing.</p>
-            <a
-              href="/LaptopTruthScanner.ps1"
-              download="LaptopTruthScanner.ps1"
-              className="mt-2 w-full py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
-            >
-              <Download className="w-3.5 h-3.5" /> Download .PS1
-            </a>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-slate-900/90 border border-purple-500/30 space-y-2">
-            <span className="text-[10px] font-bold text-purple-400 uppercase tracking-wider">USB Drive Ready</span>
-            <h4 className="text-sm font-bold text-white">3. Standalone EXE</h4>
-            <p className="text-xs text-slate-400">Copy to a USB flash drive and take it with you to Hafeez Center.</p>
-            <a
-              href="/LaptopTruthScanner.exe"
-              download="LaptopTruthScanner.exe"
-              className="mt-2 w-full py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-all"
-            >
-              <Download className="w-3.5 h-3.5" /> Download .EXE
+              <Download className="w-4 h-4" />
+              <span>Download Scanner (.bat)</span>
             </a>
           </div>
         </div>

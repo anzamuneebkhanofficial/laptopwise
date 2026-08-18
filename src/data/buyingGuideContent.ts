@@ -210,7 +210,7 @@ export const BUYING_GUIDE_SECTIONS: GuideSection[] = [
         heading: "4 Parts Most Frequently Swapped by Shady Sellers:",
         points: [
           "1. Memory (RAM): Genuine RAM sticks (Samsung, Micron, SK Hynix, Crucial) have sharp, high-quality printed stickers with matching serial numbers. If the sticker looks blurry, crooked, or has spelling errors, it is a counterfeit clone.",
-          "2. Storage Drive (SSD): Check the drive model reported in software. Fake Samsung SSDs often use cheap Phison or Silicon Motion controllers with spoofed firmware. Use our LaptopTruth scanner to check chip vendor IDs.",
+          "2. Storage Drive (SSD): Check the drive model reported in software. Fake Samsung SSDs often use cheap Phison or Silicon Motion controllers with spoofed firmware. Use our LaptopWise scanner to check chip vendor IDs.",
           "3. Battery: Original OEM laptop batteries (from Dell, Lenovo, HP) show genuine manufacturer codes in the Windows battery report (like 'LGC', 'SMP', or 'Simplo'). Cheap third-party replacements often show blank or generic vendor strings and lose charge quickly.",
           "4. Charger / Power Adapter: Verify the wattage printed on the charger brick (e.g. 45W, 65W, 90W) matches the laptop's official factory requirement. Using an underpowered 15W or 30W generic charger will throttle your laptop's speed and destroy the battery."
         ],

@@ -1,12 +1,12 @@
 <# :
 @echo off
 setlocal
-title LaptopTruth Hardware Scanner v3.0
+title LaptopWise Hardware Scanner v3.0
 color 0B
 
 echo.
 echo ================================================================
-echo          LaptopTruth Hardware Scanner v3.0
+echo          LaptopWise Hardware Scanner v3.0
 echo          Deep Hardware Fingerprint Agent
 echo ================================================================
 echo.
@@ -30,14 +30,14 @@ goto :EOF
 #>
 
 # ================================================================
-# LAPTOPTRUTH HARDWARE SCANNER - EMBEDDED POWERSHELL ENGINE
+# LAPTOPWISE HARDWARE SCANNER - EMBEDDED POWERSHELL ENGINE
 # ================================================================
 
 $ErrorActionPreference = "SilentlyContinue"
 
 Write-Host ""
 Write-Host "================================================================" -ForegroundColor Cyan
-Write-Host "         LaptopTruth Hardware Scanner v3.0" -ForegroundColor Cyan
+Write-Host "         LaptopWise Hardware Scanner v3.0" -ForegroundColor Cyan
 Write-Host "         Deep Hardware Fingerprint Agent" -ForegroundColor Cyan
 Write-Host "================================================================" -ForegroundColor Cyan
 Write-Host ""

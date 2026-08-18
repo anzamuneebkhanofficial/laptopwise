@@ -4,7 +4,7 @@ import path from "path";
 
 export async function GET() {
   try {
-    const filePath = path.join(process.cwd(), "public", "LaptopTruthScanner.bat");
+    const filePath = path.join(process.cwd(), "public", "LaptopWiseScanner.bat");
     
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ error: "Scanner script not found on server" }, { status: 404 });
@@ -15,7 +15,7 @@ export async function GET() {
     return new NextResponse(fileBuffer, {
       headers: {
         "Content-Type": "application/x-bat",
-        "Content-Disposition": 'attachment; filename="LaptopTruthScanner.bat"',
+        "Content-Disposition": 'attachment; filename="LaptopWiseScanner.bat"',
       },
     });
   } catch (error: any) {

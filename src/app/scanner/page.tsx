@@ -1,27 +1,24 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import {
-  Download, Terminal, ShieldCheck, Copy, Check, FileCode, ArrowLeft,
-  Play, ExternalLink, Zap, CheckCircle2, AlertTriangle, HelpCircle,
-  Laptop, Code, Sparkles, Cpu, Layers
+  Download,
+  Terminal,
+  ShieldCheck,
+  ArrowLeft,
+  Zap,
+  CheckCircle2,
+  HardDrive,
+  Battery,
+  Cpu,
+  Lock,
+  Sparkles,
 } from "lucide-react";
 
 export default function ScannerPage() {
-  const [copiedCmd, setCopiedCmd] = useState<string | null>(null);
-
-  const copyToClipboard = (text: string, id: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedCmd(id);
-    setTimeout(() => setCopiedCmd(null), 2000);
-  };
-
-  const dotnetPublishCmd = "dotnet publish LaptopTruthScanner.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o .\\dist";
-  const ps1DirectCmd = "powershell -NoProfile -ExecutionPolicy Bypass -File .\\LaptopTruthScanner.ps1";
-
   return (
-    <div className="max-w-5xl mx-auto space-y-10 py-6">
+    <div className="max-w-4xl mx-auto space-y-10 py-6">
       <Link
         href="/scan"
         className="inline-flex items-center gap-1.5 text-xs text-slate-400 hover:text-indigo-400 font-medium transition-colors"
@@ -32,358 +29,166 @@ export default function ScannerPage() {
 
       {/* Header */}
       <div className="text-center space-y-3">
-        <span className="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-          Hardware Scanner Download
+        <span className="inline-block px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+          Single 1-Click Solution
         </span>
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-white">
-          Download Your Laptop Scanner
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+          LaptopWise Windows Hardware Scanner
         </h1>
-        <p className="text-slate-400 text-sm max-w-2xl mx-auto leading-relaxed">
-          Choose how you want to scan your laptop. Option 1 (.BAT) is the easiest and runs immediately on any Windows laptop without installing anything.
+        <p className="text-slate-300 text-sm max-w-2xl mx-auto leading-relaxed">
+          Zero installation. Single lightweight file (23 KB). Runs on any Windows 10 & 11 laptop in 5 seconds.
         </p>
       </div>
 
-      {/* 3 SCANNER CARDS */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-        {/* ── OPTION 1: BAT FILE ───────────────────────────────────────── */}
-        <div className="glass-panel p-6 rounded-3xl border border-emerald-500/30 bg-emerald-950/10 flex flex-col justify-between space-y-5 relative">
-          <div className="absolute -top-3 right-5 px-3 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500 text-slate-950 uppercase tracking-wide">
-            Easiest & Recommended
-          </div>
-
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-                <Terminal className="w-6 h-6" />
-              </div>
-              <div>
-                <span className="text-[10px] font-mono font-bold text-emerald-400 uppercase">Option 1</span>
-                <h3 className="text-lg font-extrabold text-white">Instant Scanner (.bat)</h3>
-              </div>
+      {/* ── HERO DOWNLOAD CARD ───────────────────────────────────────── */}
+      <div className="relative overflow-hidden glass-panel p-8 sm:p-10 rounded-3xl border border-emerald-500/40 bg-gradient-to-b from-emerald-950/20 via-slate-900/80 to-slate-950/90 shadow-2xl space-y-8">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2 max-w-xl">
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 font-bold">
+                v3.0 Official Release
+              </span>
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 font-bold">
+                23 KB File
+              </span>
             </div>
-
+            <h2 className="text-2xl font-extrabold text-white">Download LaptopWiseScanner.bat</h2>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Single file. Just download and double-click to scan. Works on all Windows 10 and 11 laptops.
+              Carry it on a USB flash drive or download directly on the laptop you are inspecting at Hafeez Centre, Techno City, or an OLX meetup.
             </p>
-
-            <div className="space-y-2 text-xs">
-              <div className="font-bold text-slate-200">What It Does:</div>
-              <ul className="space-y-1.5 text-slate-400">
-                <li className="flex items-start gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Zero installation needed (Single file)</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Checks real RAM slots, SSD health, battery</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-emerald-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Opens your Truth Report automatically</span>
-                </li>
-              </ul>
-
-              <div className="pt-2 font-bold text-slate-200">How to Use:</div>
-              <ul className="space-y-1 text-slate-400">
-                <li className="flex items-start gap-1.5 text-emerald-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Right-click &rarr; Run as Administrator</span>
-                </li>
-              </ul>
-            </div>
           </div>
 
-          <div className="space-y-3 pt-4 border-t border-slate-800">
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400">
-              <strong className="text-slate-200">How to run:</strong> Double-click or Right-Click &rarr; <span className="text-emerald-400 font-semibold">Run as Administrator</span>.
-            </div>
-            <a
-              href="/LaptopTruthScanner.bat"
-              download="LaptopTruthScanner.bat"
-              className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20 transition-all"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download .BAT Launcher</span>
-            </a>
-          </div>
+          <a
+            href="/LaptopWiseScanner.bat"
+            download="LaptopWiseScanner.bat"
+            className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-slate-950 font-black text-sm flex items-center justify-center gap-2.5 shadow-xl shadow-emerald-500/25 transform hover:-translate-y-0.5 transition-all self-start md:self-auto shrink-0"
+          >
+            <Download className="w-5 h-5" />
+            <span>Download 1-Click Scanner (.bat)</span>
+          </a>
         </div>
 
-        {/* ── OPTION 2: POWERSHELL PS1 ─────────────────────────────────── */}
-        <div className="glass-panel p-6 rounded-3xl border border-indigo-500/30 bg-indigo-950/10 flex flex-col justify-between space-y-5">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                <FileCode className="w-6 h-6" />
+        {/* ── 3-STEP VISUAL HOW-TO-USE GUIDE ─────────────────────────────────── */}
+        <div className="border-t border-slate-800/80 pt-8 space-y-5">
+          <h3 className="text-sm uppercase tracking-wider font-extrabold text-slate-200 flex items-center gap-2">
+            <Zap className="w-4 h-4 text-amber-400" />
+            <span>How to Use in 3 Simple Steps:</span>
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Step 1 */}
+            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2.5">
+              <div className="w-8 h-8 rounded-xl bg-indigo-500/20 text-indigo-400 text-sm font-black flex items-center justify-center border border-indigo-500/30">
+                1
               </div>
-              <div>
-                <span className="text-[10px] font-mono font-bold text-indigo-400 uppercase">Option 2</span>
-                <h3 className="text-lg font-extrabold text-white">PowerShell Script (.ps1)</h3>
-              </div>
+              <h4 className="font-bold text-slate-100 text-sm">Download to Laptop</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Click the download button to save <code className="text-indigo-300 font-mono">LaptopWiseScanner.bat</code> onto the laptop Desktop or USB drive.
+              </p>
             </div>
 
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Open script file. You can open and read every line of code before running it on your machine.
-            </p>
-
-            <div className="space-y-2 text-xs">
-              <div className="font-bold text-slate-200">What It Does:</div>
-              <ul className="space-y-1.5 text-slate-400">
-                <li className="flex items-start gap-1.5 text-indigo-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>100% open code you can inspect</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-indigo-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Shows full progress in terminal window</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-indigo-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Works on any Windows PowerShell</span>
-                </li>
-              </ul>
-
-              <div className="pt-2 font-bold text-slate-200">How to Run:</div>
-              <ul className="space-y-1 text-slate-400">
-                <li className="flex items-start gap-1.5 text-indigo-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Run command shown below in PowerShell</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="space-y-3 pt-4 border-t border-slate-800">
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-[11px] text-slate-400">
-              <strong className="text-slate-200">Quick Command:</strong>
-              <div className="flex items-center justify-between gap-1 mt-1 font-mono text-[10px] text-indigo-300">
-                <span className="truncate">{ps1DirectCmd}</span>
-                <button
-                  onClick={() => copyToClipboard(ps1DirectCmd, "ps1")}
-                  className="p-1 rounded bg-slate-900 hover:bg-slate-800 text-slate-300"
-                  title="Copy command"
-                >
-                  {copiedCmd === "ps1" ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
-                </button>
+            {/* Step 2 */}
+            <div className="p-5 rounded-2xl bg-slate-900/90 border border-emerald-500/30 space-y-2.5">
+              <div className="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 text-sm font-black flex items-center justify-center border border-emerald-500/30">
+                2
               </div>
+              <h4 className="font-bold text-slate-100 text-sm">Run as Administrator</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                Right-click <code className="text-emerald-300 font-mono">LaptopWiseScanner.bat</code> and select <strong className="text-emerald-400">"Run as Administrator"</strong>.
+              </p>
             </div>
-            <a
-              href="/LaptopTruthScanner.ps1"
-              download="LaptopTruthScanner.ps1"
-              className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-indigo-600/20 transition-all"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download .PS1 Script</span>
-            </a>
-          </div>
-        </div>
 
-        {/* ── OPTION 3: C# NATIVE AGENT ───────────────────────────────── */}
-        <div className="glass-panel p-6 rounded-3xl border border-purple-500/30 bg-purple-950/10 flex flex-col justify-between space-y-5">
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
-                <Cpu className="w-6 h-6" />
+            {/* Step 3 */}
+            <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2.5">
+              <div className="w-8 h-8 rounded-xl bg-amber-500/20 text-amber-400 text-sm font-black flex items-center justify-center border border-amber-500/30">
+                3
               </div>
-              <div>
-                <span className="text-[10px] font-mono font-bold text-purple-400 uppercase">Option 3</span>
-                <h3 className="text-lg font-extrabold text-white">Standalone Program (.exe)</h3>
-              </div>
-            </div>
-
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Single-file Windows program. Copy to a USB drive and scan laptops at shops in Hafeez Center or OLX meetups.
-            </p>
-
-            <div className="space-y-2 text-xs">
-              <div className="font-bold text-slate-200">What It Does:</div>
-              <ul className="space-y-1.5 text-purple-400">
-                <li className="flex items-start gap-1.5 text-purple-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Single .EXE file &mdash; ready to use</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-purple-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Super fast native performance</span>
-                </li>
-                <li className="flex items-start gap-1.5 text-purple-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Perfect to carry on a USB drive</span>
-                </li>
-              </ul>
-
-              <div className="pt-2 font-bold text-slate-200">How to Use:</div>
-              <ul className="space-y-1 text-slate-400">
-                <li className="flex items-start gap-1.5 text-purple-300">
-                  <CheckCircle2 className="w-3.5 h-3.5 mt-0.5 shrink-0" />
-                  <span>Click download and double-click the .EXE</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="space-y-2 pt-4 border-t border-slate-800">
-            <a
-              href="/LaptopTruthScanner.exe"
-              download="LaptopTruthScanner.exe"
-              className="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-purple-600/30 transition-all"
-            >
-              <Download className="w-4 h-4" />
-              <span>Download Compiled .EXE (Ready to Run)</span>
-            </a>
-
-            <div className="grid grid-cols-2 gap-2 pt-1">
-              <a
-                href="/LaptopTruthScanner_Source.zip"
-                download="LaptopTruthScanner_Source.zip"
-                className="py-2 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Source (.ZIP)</span>
-              </a>
-              <a
-                href="/BuildExecutable.bat"
-                download="BuildExecutable.bat"
-                className="py-2 rounded-xl bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-300 font-bold text-[11px] flex items-center justify-center gap-1.5 transition-all"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Build Script</span>
-              </a>
+              <h4 className="font-bold text-slate-100 text-sm">Instant Truth Report</h4>
+              <p className="text-xs text-slate-400 leading-relaxed">
+                In 5 seconds, the scanner reads the hardware and automatically opens your web browser with the full verified audit report!
+              </p>
             </div>
           </div>
         </div>
 
-      </div>
-
-      {/* ── SIDE-BY-SIDE COMPARISON TABLE ────────────────────────────────── */}
-      <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-        <h2 className="font-bold text-slate-100 text-base flex items-center gap-2">
-          <Layers className="w-5 h-5 text-indigo-400" />
-          <span>Full Scanner Feature & Limitation Matrix</span>
-        </h2>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead>
-              <tr className="border-b border-slate-800 text-slate-400">
-                <th className="pb-3 font-semibold">Capability / Metric</th>
-                <th className="pb-3 font-semibold text-emerald-400">Option 1: .BAT Launcher</th>
-                <th className="pb-3 font-semibold text-indigo-400">Option 2: .PS1 Script</th>
-                <th className="pb-3 font-semibold text-purple-400">Option 3: C# Native (.exe)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">Installation Requirement</td>
-                <td className="py-2.5 text-emerald-400 font-bold">Zero (Built-in)</td>
-                <td className="py-2.5 text-emerald-400 font-bold">Zero (Built-in)</td>
-                <td className="py-2.5 text-amber-400">Requires .NET SDK to compile</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">Hardware Access Level</td>
-                <td className="py-2.5 text-white">Full WMI + ACPI + CIM</td>
-                <td className="py-2.5 text-white">Full WMI + ACPI + CIM</td>
-                <td className="py-2.5 text-purple-300 font-bold">Full WMI + Low-Level IOCTL</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">Execution Method</td>
-                <td className="py-2.5">Double-click in Explorer</td>
-                <td className="py-2.5">PowerShell Terminal</td>
-                <td className="py-2.5">Double-click compiled EXE</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">RAM Slot Detection</td>
-                <td className="py-2.5 text-emerald-400">Total & Occupied Slots</td>
-                <td className="py-2.5 text-emerald-400">Total & Occupied Slots</td>
-                <td className="py-2.5 text-emerald-400">Total & Occupied Slots</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">Battery ACPI Capacity & Cycles</td>
-                <td className="py-2.5 text-emerald-400">Yes (Run as Admin)</td>
-                <td className="py-2.5 text-emerald-400">Yes (Run as Admin)</td>
-                <td className="py-2.5 text-emerald-400">Yes (Run as Admin)</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">SSD SMART Health & Hours</td>
-                <td className="py-2.5 text-emerald-400">Yes (StorageReliability)</td>
-                <td className="py-2.5 text-emerald-400">Yes (StorageReliability)</td>
-                <td className="py-2.5 text-emerald-400">Yes (WMI Storage)</td>
-              </tr>
-              <tr>
-                <td className="py-2.5 font-medium text-slate-400">Security & Inspection</td>
-                <td className="py-2.5">Plain-text script</td>
-                <td className="py-2.5">Plain-text script</td>
-                <td className="py-2.5">Open source .CS file</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Security / Admin Note */}
+        <div className="p-4 rounded-2xl bg-slate-950/80 border border-slate-800 flex items-start gap-3">
+          <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+          <div className="text-xs text-slate-300 space-y-1">
+            <strong className="text-slate-100 block">Why Administrator Rights Are Essential:</strong>
+            <p className="text-slate-400 leading-relaxed">
+              Windows locks direct ACPI battery registers (real milliwatt-hour capacities) and low-level SSD S.M.A.R.T. controller wear counters for standard users. Running as Administrator unlocks full 100% hardware telemetry accuracy.
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* ── HOW TO COMPILE C# INTO STANDALONE EXE ─────────────────────────── */}
-      <div className="glass-panel p-8 rounded-3xl border border-purple-500/30 space-y-6">
-        <div className="flex items-center gap-3">
-          <div className="p-3 rounded-2xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
-            <Cpu className="w-6 h-6" />
-          </div>
-          <div>
-            <h2 className="text-xl font-extrabold text-white">How to Compile the C# Scanner into a Standalone .EXE</h2>
-            <p className="text-xs text-slate-400">Follow these 3 simple steps to generate a native `LaptopTruthScanner.exe`</p>
-          </div>
+      {/* ── WHAT HARDWARE DOES THE SCANNER INSPECT? ───────────────────────── */}
+      <div className="glass-panel p-8 rounded-3xl border border-slate-800 space-y-6">
+        <div className="space-y-1">
+          <h2 className="text-xl font-extrabold text-white">What Hardware Does the Scanner Inspect?</h2>
+          <p className="text-xs text-slate-400">Everything the seller cannot hide or fake:</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-          {/* Step 1 */}
-          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <div className="w-6 h-6 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">1</div>
-            <h3 className="font-bold text-slate-100">Install .NET 8 SDK</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 w-max border border-indigo-500/20">
+              <Cpu className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">Motherboard &amp; BIOS</h3>
             <p className="text-slate-400 leading-relaxed">
-              Download and install the official Microsoft .NET 8.0 SDK (x64) installer:
+              Queries factory SMBIOS serial numbers, release date, exact model designation, and CPU socket generation.
             </p>
-            <a
-              href="https://dotnet.microsoft.com/download/dotnet/8.0"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-purple-400 hover:text-purple-300 font-bold pt-1"
-            >
-              <span>Microsoft .NET 8 SDK Download</span>
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
           </div>
 
-          {/* Step 2 */}
-          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <div className="w-6 h-6 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">2</div>
-            <h3 className="font-bold text-slate-100">Run the 1-Click Builder</h3>
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 w-max border border-purple-500/20">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">RAM Slots &amp; Speeds</h3>
             <p className="text-slate-400 leading-relaxed">
-              Download <strong className="text-white">BuildExecutable.bat</strong> into your project <code className="text-purple-300">scanner/</code> folder and double-click it.
+              Inspects total physical motherboard memory slots (occupied vs empty), stick part numbers, MHz frequency, and max upgrade limit.
             </p>
-            <span className="text-[11px] text-slate-500 block">It detects .NET SDK and builds the EXE automatically!</span>
           </div>
 
-          {/* Step 3 */}
-          <div className="p-4 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
-            <div className="w-6 h-6 rounded-full bg-purple-600 text-white font-bold flex items-center justify-center">3</div>
-            <h3 className="font-bold text-slate-100">Run LaptopTruthScanner.exe</h3>
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-rose-500/10 text-rose-400 w-max border border-rose-500/20">
+              <HardDrive className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">Fake SSD Detection</h3>
             <p className="text-slate-400 leading-relaxed">
-              Your self-contained executable will be created in <code className="text-emerald-400">scanner\dist\LaptopTruthScanner.exe</code>.
+              Examines S.M.A.R.T. health percentage, power-on hours, and chip vendor IDs to catch relabeled SSDs with spoofed firmware.
             </p>
-            <span className="text-[11px] text-emerald-400 block font-semibold">Copy it to any USB drive and scan any laptop!</span>
           </div>
-        </div>
 
-        {/* Manual Build Command */}
-        <div className="space-y-2">
-          <span className="text-xs text-slate-400 font-medium">Or compile manually via Terminal:</span>
-          <div className="relative bg-slate-950 p-4 rounded-2xl border border-slate-800 text-xs font-mono text-emerald-400 flex items-center justify-between">
-            <code className="truncate pr-4">{dotnetPublishCmd}</code>
-            <button
-              onClick={() => copyToClipboard(dotnetPublishCmd, "dotnet")}
-              className="p-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 transition-colors shrink-0"
-              title="Copy command"
-            >
-              {copiedCmd === "dotnet" ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
-            </button>
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400 w-max border border-emerald-500/20">
+              <Battery className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">Real Battery Health</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Queries ACPI registers for original factory design capacity vs current full charge capacity to reveal true battery wear.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 w-max border border-amber-500/20">
+              <Zap className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">Charger Wattage Match</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Detects charging rate to ensure the bundled power adapter matches the manufacturer's required wattage.
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-slate-900/60 border border-slate-800/80 space-y-2">
+            <div className="p-2.5 rounded-xl bg-teal-500/10 text-teal-400 w-max border border-teal-500/20">
+              <Lock className="w-5 h-5" />
+            </div>
+            <h3 className="font-bold text-slate-100 text-sm">100% Privacy &amp; Open</h3>
+            <p className="text-slate-400 leading-relaxed">
+              Human-readable script with zero background telemetry, zero spyware, and zero permanent database requirements.
+            </p>
           </div>
         </div>
       </div>
