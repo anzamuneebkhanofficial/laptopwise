@@ -5,7 +5,7 @@ import path from "path";
 export const dynamic = "force-dynamic";
 
 export function getBaseUrl(req: NextRequest): string {
-  // 1. Explicit query parameter passed from frontend (e.g. ?origin=https://my-server.com)
+  // 1. Explicit query parameter passed from frontend (e.g. ?origin=https://laptopwise-two.vercel.app)
   const queryOrigin = req.nextUrl?.searchParams?.get("origin");
   if (queryOrigin && queryOrigin.trim() !== "" && queryOrigin !== "null" && queryOrigin !== "undefined") {
     const clean = queryOrigin.trim().replace(/\/+$/, "");
@@ -26,7 +26,7 @@ export function getBaseUrl(req: NextRequest): string {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
       url = `https://${url}`;
     }
-    // If user explicitly configured a domain that is NOT localhost, always prioritize it!
+    // If user explicitly configured a domain that is NOT localhost, prioritize it!
     if (!url.includes("localhost") && !url.includes("127.0.0.1")) {
       return url;
     }
@@ -60,7 +60,7 @@ export function getBaseUrl(req: NextRequest): string {
     return `${proto}://${forwardedHost}`.replace(/\/+$/, "");
   }
 
-  // 6. If envAppUrl is set (even if localhost), use it
+  // 6. If envAppUrl is set (even if localhost for dev), use it
   if (envAppUrl && envAppUrl.trim() !== "") {
     let url = envAppUrl.trim().replace(/\/+$/, "");
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -72,18 +72,24 @@ export function getBaseUrl(req: NextRequest): string {
   // 7. Request nextUrl origin
   try {
     const origin = req.nextUrl?.origin;
-    if (origin && origin !== "null" && origin !== "http://null") {
+    if (origin && origin !== "null" && origin !== "http://null" && !origin.includes("localhost") && !origin.includes("127.0.0.1")) {
       return origin.replace(/\/+$/, "");
     }
   } catch {}
 
-  // 8. Default fallback
+  // 8. Default fallback based on environment
+  if (process.env.NODE_ENV === "production") {
+    return "https://laptopwise-two.vercel.app";
+  }
+
   return "http://localhost:3000";
 }
 
 export async function GET(req: NextRequest) {
   try {
-    const filePath = path.join(process.cwd(), "public", "LaptopWiseScanner.bat");
+    const templatePath = path.join(process.cwd(), "src", "templates", "LaptopWiseScanner.bat");
+    const publicPath = path.join(process.cwd(), "public", "LaptopWiseScanner.bat");
+    const filePath = fs.existsSync(templatePath) ? templatePath : publicPath;
 
     if (!fs.existsSync(filePath)) {
       return NextResponse.json({ error: "Scanner script not found on server" }, { status: 404 });
